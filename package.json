@@ -1,0 +1,17 @@
+{
+    "name": "e2e-trace",
+    "version": "1.0.0",
+    "description": "Example of end to end tracing using OpenTelemetry tracing",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "Caroline Evans",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "express": "^4.16.4",
+        "@google-cloud/firestore": "^3.0.0",
+        "@google-cloud/storage": "^5.0.0",
+        "body-parser": "^1.18.3"
+    }
+}
