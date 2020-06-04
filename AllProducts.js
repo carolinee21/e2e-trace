@@ -1,0 +1,1 @@
+export let productsList = ["apple", "banana", "carrot"];

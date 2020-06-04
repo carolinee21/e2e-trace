@@ -1,5 +1,5 @@
 // var AllProducts = ["apple", "banana", "carrot"];
-import productsList from '../AllProducts'
+import productsList from '../AllProducts.js'
 // function Product(name, price, quantity) {
 //     this.name = name;
 //     this.price = price;

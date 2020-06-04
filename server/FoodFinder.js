@@ -1,5 +1,5 @@
 import FoodSupplier from "./FoodSupplier";
-import productsList from '../AllProducts'
+import productsList from '../AllProduct.js';
 
 // var AllProducts = ["apple", "banana", "carrot"];
 
