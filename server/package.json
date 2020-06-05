@@ -1,7 +1,7 @@
 {
-    "name": "e2e-trace",
+    "name": "foodfinder-server",
     "version": "1.0.0",
-    "description": "Example of end to end tracing using OpenTelemetry tracing",
+    "description": "TODO. Example of end to end tracing using OpenTelemetry tracing",
     "main": "./server.js",
     "exports": "./server.js",
     "type": "module",
@@ -9,7 +9,7 @@
         "start": "node init.js"
     },
     "author": "Caroline Evans",
-    "license": "Apache-2.0",
+    "license": "TODO",
     "dependencies": {
         "body-parser": "^1.18.3",
         "cors": "^2.8.5",

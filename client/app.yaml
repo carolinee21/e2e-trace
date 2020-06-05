@@ -1,0 +1,7 @@
+ 
+service: client
+env: flex
+runtime: nodejs
+handlers:
+- url: /find-product/.*
+  script: auto
