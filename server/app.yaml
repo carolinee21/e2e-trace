@@ -1,2 +1,4 @@
 env: flex
 runtime: nodejs
+
+instance_class: F2
