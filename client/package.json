@@ -1,19 +1,39 @@
 {
-    "name": "foodfinder-client",
-    "version": "1.0.0",
-    "description": "TODO. start could be: serve -l 8080 -s build",
-    "main": "./client.js",
-    "exports": "./client.js",
-    "type": "module",
-    "scripts": {
-        "start": "node client.js"
-    },
-    "author": "Caroline Evans",
-    "license": "TODO",
-    "dependencies": {
-        "cors": "^2.8.5",
-        "esm": "^3.2.25",
-        "express": "^4.16.4",
-        "node-fetch": "^2.6.0"
-    }
+  "name": "foodfinder-client",
+  "version": "1.0.0",
+  "description": "TODO. start could be: serve -l 8080 -s build",
+  "main": "./client.js",
+  "exports": "./client.js",
+  "type": "module",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "author": "Caroline Evans",
+  "license": "TODO",
+  "dependencies": {
+    "@material-ui/core": "^4.10.1",
+    "@material-ui/lab": "^4.0.0-alpha.55",
+    "cors": "^2.8.5",
+    "esm": "^3.2.25",
+    "express": "^4.16.4",
+    "node-fetch": "^2.6.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
