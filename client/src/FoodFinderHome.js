@@ -21,7 +21,7 @@ class FoodFinderHome extends React.Component {
         });
         // http://localhost:8081/find-product/
         // http://jsonplaceholder.typicode.com/users
-        fetch(cloudUrl + productName)
+        fetch(cloudUrl + 'find-product/' + productName)
         .then(res => res.json())
         .then((data) => {
             console.log("hiiii");
