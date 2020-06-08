@@ -1,5 +1,5 @@
 import FoodSupplier from './FoodSupplier.js';
-import productsList from '../AllProducts.js';
+import productsList from './AllProducts.js';
 
 
 export default class FoodFinder {

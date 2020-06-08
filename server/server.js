@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const path = require("path");
 
-let cors = require('cors');
+//let cors = require('cors');
 let finder = new FoodFinder();
 
 app.get('/', (req, res) => {
@@ -22,7 +22,7 @@ module.exports = app;
 
 function init() {
     
-    app.use(cors);
+    //app.use(cors);
     app.use(express.static(path.join(__dirname, '../client')));
     console.log(__dirname);
 

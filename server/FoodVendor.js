@@ -1,4 +1,4 @@
-import productsList from '../AllProducts.js'
+import productsList from './AllProducts.js'
 
 export default class FoodVendor {
     constructor(name) {
