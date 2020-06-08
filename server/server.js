@@ -1,15 +1,16 @@
 import FoodFinder from './FoodFinder.js';
 const express = require('express');
-const app = express();
+let cors = require('cors');
 const path = require("path");
 
-//let cors = require('cors');
+const app = express();
+app.use(cors);
 let finder = new FoodFinder();
 
 app.get('/', (req, res) => {
   console.log('Home page');
 
-  res.send('Welcome! Please navigate to http://localhost:8081/find-product/flour');
+  res.send('Welcome! Please navigate to ./find-product/flour');
 });
 
 app.get("/find-product/:product", (req, res, next) => {
@@ -22,7 +23,7 @@ module.exports = app;
 
 function init() {
     
-    //app.use(cors);
+    // app.use(cors);
     app.use(express.static(path.join(__dirname, '../client')));
     console.log(__dirname);
 
