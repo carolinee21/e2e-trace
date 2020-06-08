@@ -6,8 +6,8 @@ import Container from '@material-ui/core/Container';
 
 let productsList = ["apple", "banana", "carrot", "flour", "eggs", "milk"];
 
-const cloudUrl = 'https://ardent-fusion-279020.wl.r.appspot.com/';
-const localUrl = 'http://localhost:8081'; 
+const cloudUrl = 'https://server-dot-ardent-fusion-279020.wl.r.appspot.com/';
+const localUrl = 'http://localhost:8081/'; 
 
 class FoodFinderHome extends React.Component {
     constructor (props) {
@@ -19,17 +19,23 @@ class FoodFinderHome extends React.Component {
         this.setState ({
             currentProduct : productName
         });
+        console.log("Trying...");
         // http://localhost:8081/find-product/
         // http://jsonplaceholder.typicode.com/users
-        fetch(cloudUrl + 'find-product/' + productName)
-        .then(res => res.json())
+        fetch('/server/find-product/' + productName)
+        .then((res) => {
+            console.log("im here");
+            console.log(res);
+            return res;
+        })
+        .then((res) => {return res})
         .then((data) => {
             console.log("hiiii");
             console.log(data);
           this.setState({ vendorMatches: data })
         })
         .catch(console.log);
-
+        console.log("done?");
     };
 
     render () {

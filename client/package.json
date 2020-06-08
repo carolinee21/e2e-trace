@@ -5,8 +5,10 @@
   "main": "./client.js",
   "exports": "./client.js",
   "type": "module",
+  "proxy": "http://localhost:8081",
   "scripts": {
-    "start": "PORT=8082 react-scripts start",
+    "postinstall": "npm run build",
+    "start": "serve -l 8080 -s build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -22,7 +24,8 @@
     "node-fetch": "^2.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "serve": "^11.3.2"
   },
   "browserslist": {
     "production": [
