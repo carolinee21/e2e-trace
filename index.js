@@ -1,17 +1,21 @@
 const express = require('express');
+const path = require("path");
+
+
+
 const app = express();
-const router = express.Router();
+const port = process.env.PORT || 8081;
+app.use(express.static(path.join(__dirname, "client")));
+// const router = express.Router();
 
 
 app.get('/', (req, res) => {
-    // root; can redirect?
-  console.log('Hello world received a request.');
+  // root; can redirect?
 
   const target = process.env.TARGET || 'World';
-  res.send(`Hello ${target}!`);
+  res.status(200).send(`Hello ${target}!`);
 });
 
-const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log('App listening on port', port);
 });
