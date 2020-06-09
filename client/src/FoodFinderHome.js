@@ -1,6 +1,6 @@
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { Grid, InputLabel, TextField, Container, List, ListItem, ListItemText, ListItemIcon, Typography, CircularProgress} from '@material-ui/core';
+import { Grid, InputLabel, TextField, List, ListItem, ListItemText, ListItemIcon, Typography, CircularProgress} from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 let productsList = ["Apples", "Bananas", "Butter", "Bread", "Carrots", "Cheese", "Eggs", "Flour", "Ground Beef", "Lettuce", "Milk", "Orange Juice", "Pasta", "Peanut Butter", "Rice", "Salt", "Sugar", "Spinach"];

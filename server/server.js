@@ -8,7 +8,7 @@ let finder = new FoodFinder();
 
 
 function init() {
-    // app.use(cors({credentials: true, origin: "http://localhost:8081"}));
+    // app.use(cors({credentials: true, origin: "http://localhost:8080"}));
     app.use(cors({credentials: true, origin: "https://ardent-fusion-279020.wl.r.appspot.com"}));
     app.use(express.json());
     app.use(express.static(path.join(__dirname, '../client/build')));
