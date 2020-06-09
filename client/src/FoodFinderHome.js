@@ -1,6 +1,6 @@
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { Grid, InputLabel, TextField, Container, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
+import { Grid, InputLabel, TextField, Container, List, ListItem, ListItemText, ListItemIcon, Typography } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 let productsList = ["Apples", "Bananas", "Butter", "Bread", "Carrots", "Cheese", "Eggs", "Flour", "Ground Beef", "Lettuce", "Milk", "Orange Juice", "Pasta", "Rice", "Salt", "Sugar", "Spinach"];
@@ -11,32 +11,27 @@ const localUrl = 'http://localhost:8081/';
 class FoodFinderHome extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { currentProduct : '', vendorMatches : { }};
-        //currentProduct : '', vendorMatches = {} 
+        this.state = { currentProduct : "", vendorMatches : { }};
     }
     selectedProduct (productName) {
         this.setState ({
             currentProduct : productName
         });
-        console.log("Trying...");
-        // http://localhost:8081/find-product/
-        // http://jsonplaceholder.typicode.com/users
+
         fetch(cloudUrl + 'find-product/' + productName)
         .then(res => res.json())
         .then((data) => {
-            console.log("hiiii");
             console.log(data);
           this.setState({ vendorMatches: data })
         })
         .catch(console.log);
-        console.log("done?");
     };
     
     getVendorList (vendors) {
-    if (this.state.productName === "") {
+    if (!this.state.productName) {
     	return <InputLabel>Please select an item.</InputLabel>;
     }
-    if (Object.keys(vendors).length === 0) {
+    else if (Object.keys(vendors).length === 0) {
     	return <InputLabel>The item you have selected is currently out of stock at all vendors.</InputLabel>;
     }
     return (
@@ -58,6 +53,9 @@ class FoodFinderHome extends React.Component {
 		  justify="center"
 		  alignItems="center"
 		>
+		<Typography variant="h2" gutterBottom>
+		FoodFinder
+	      </Typography>
             <InputLabel id="demo-simple-select-label">Available Products</InputLabel>
     
             <Autocomplete
@@ -73,9 +71,6 @@ class FoodFinderHome extends React.Component {
             />
             <List>
             {this.getVendorList(this.state.vendorMatches)}
-            
-
-            
             </List>
         
         </Grid>
