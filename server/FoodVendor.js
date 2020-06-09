@@ -7,14 +7,22 @@ export default class FoodVendor {
         this.initializeRandomProductSupply();
     
 
-        this.hasProduct = (productName) => {
-            // console.log("Checking " + this.name + " for product " + productName);
+        this.hasProduct = async (productName) => {
+            console.log("Checking " + this.name + " for product " + productName);
+            let delay = 25;
+            await new Promise(r => setTimeout(r, delay));
+            console.log("...done!");
             return (productName in this.products);
         }
 
-        this.getProductInfo = (productName) => {
+        this.getProductInfo = async (productName) => {
+            console.log("Getting product info for " + this.name + " for product " + productName);
+
+            let delay = 100;
+            await new Promise(r => setTimeout(r, delay));
+            console.log("...done!");
+
             var productInfo = this.products[productName];
-            // console.log("Product info for " + productName + " is: " + productInfo);
             return this.products[productName];
         }
     }
@@ -35,6 +43,4 @@ export default class FoodVendor {
         // console.log(this.products);
         // console.log("Initialized product supply for vendor " + this.name);
     }
-
-
 }

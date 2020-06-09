@@ -6,10 +6,11 @@ export default class FoodSupplier {
         this.initializeRandomVendors();
 
         
-        this.findVendorsWithProduct = (productName) => {
+        this.findVendorsWithProduct = async (productName) => {
             var stockedVendors = [];
             for (var vendor of this.vendors) {
-                if (vendor.hasProduct(productName)) {
+                let inStock = await vendor.hasProduct(productName);
+                if (inStock) {
                     stockedVendors.push(vendor);
                 }
             }
