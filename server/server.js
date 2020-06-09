@@ -23,11 +23,9 @@ function init() {
 init();
 
 app.get('/', (req, res) => {
-  console.log('Home page');
 
-  res.send('Welcome! Please navigate to http://localhost:8081/find-product/flour');
+  res.send('Welcome to the FoodFinder backend! Please navigate to https://ardent-fusion-279020.wl.r.appspot.com/ to use the service');
 });
-//app.use('/server');
 
 app.get("/find-product/:product", (req, res, next) => {
     console.log('app.get');
