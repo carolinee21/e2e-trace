@@ -21,7 +21,7 @@ class FoodFinderHome extends React.Component {
         console.log("Trying...");
         // http://localhost:8081/find-product/
         // http://jsonplaceholder.typicode.com/users
-        fetch(localUrl + 'find-product/' + productName)
+        fetch(cloudUrl + 'find-product/' + productName)
         .then(res => res.json())
         .then((data) => {
             console.log("hiiii");
@@ -33,8 +33,11 @@ class FoodFinderHome extends React.Component {
     };
     
     getVendorList (vendors) {
+    if (this.state.productName === "") {
+    	return <InputLabel>Please select an item.</InputLabel>;
+    }
     if (Object.keys(vendors).length === 0) {
-    	return <InputLabel>The item you have selected is out of stock at all of our vendors.</InputLabel>
+    	return <InputLabel>The item you have selected is currently out of stock at all vendors.</InputLabel>;
     }
     return (
     Object.keys(vendors).map((key, index) => (
