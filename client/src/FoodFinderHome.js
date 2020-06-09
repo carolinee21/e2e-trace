@@ -28,14 +28,14 @@ class FoodFinderHome extends React.Component {
     };
     
     getVendorList (vendors) {
-    if (!this.state.productName) {
-    	return <InputLabel>Please select an item.</InputLabel>;
-    }
-    else if (Object.keys(vendors).length === 0) {
-    	return <InputLabel>The item you have selected is currently out of stock at all vendors.</InputLabel>;
-    }
-    return (
-    Object.keys(vendors).map((key, index) => (
+	    if (!this.state.currentProduct) {
+	    	return <InputLabel>Please select an item.</InputLabel>;
+	    }
+	    else if (Object.keys(vendors).length === 0) {
+	    	return <InputLabel>The item you have selected is currently out of stock at all vendors.</InputLabel>;
+	    }
+	    return (
+	    Object.keys(vendors).map((key, index) => (
 		<ListItem>
 		<ListItemIcon>
 		  <ShoppingCartIcon />
@@ -43,7 +43,7 @@ class FoodFinderHome extends React.Component {
 		<ListItemText primary={key} secondary={"Price: $" + vendors[key].price + ", Quantity: " + vendors[key].quantity} />
 	      </ListItem>
 	      )));
-	 }
+	}
 
     render () {
         return (
