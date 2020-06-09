@@ -4,7 +4,7 @@ var app = express();
 const fetch = require("node-fetch");
 
 const cloudUrl = 'https://ardent-fusion-279020.wl.r.appspot.com';
-const localUrl = 'http://localhost:8081'; 
+const localUrl = 'http://localhost:8082'; 
 
 app.use(cors());
 
@@ -13,8 +13,8 @@ app.get('/hello/:id', (req, res, next) => {
   search(req.params.id);
 });
 
-app.listen(8082, () => {
-  console.log('CORS-enabled web server is listening on port 8082');
+app.listen(8081, () => {
+  console.log('CORS-enabled web server is listening on port 8081');
 });
 
 search = (productName) => {
