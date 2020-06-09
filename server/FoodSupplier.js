@@ -25,7 +25,5 @@ export default class FoodSupplier {
         }
         console.log("Finished initializing vendors");
     }
-
-
     
 }
