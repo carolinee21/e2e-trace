@@ -1,10 +1,9 @@
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import Container from '@material-ui/core/Container';
+import { Grid, InputLabel, TextField, Container, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-let productsList = ["apple", "banana", "carrot", "flour", "eggs", "milk"];
+let productsList = ["Apples", "Bananas", "Butter", "Bread", "Carrots", "Cheese", "Eggs", "Flour", "Ground Beef", "Lettuce", "Milk", "Orange Juice", "Pasta", "Rice", "Salt", "Sugar", "Spinach"];
 
 const cloudUrl = 'https://server-dot-ardent-fusion-279020.wl.r.appspot.com/';
 const localUrl = 'http://localhost:8081/'; 
@@ -12,7 +11,7 @@ const localUrl = 'http://localhost:8081/';
 class FoodFinderHome extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { currentProduct : '', vendorMatches : {} };
+        this.state = { currentProduct : '', vendorMatches : { }};
         //currentProduct : '', vendorMatches = {} 
     }
     selectedProduct (productName) {
@@ -22,13 +21,8 @@ class FoodFinderHome extends React.Component {
         console.log("Trying...");
         // http://localhost:8081/find-product/
         // http://jsonplaceholder.typicode.com/users
-        fetch('/server/find-product/' + productName)
-        .then((res) => {
-            console.log("im here");
-            console.log(res);
-            return res;
-        })
-        .then((res) => {return res})
+        fetch(localUrl + 'find-product/' + productName)
+        .then(res => res.json())
         .then((data) => {
             console.log("hiiii");
             console.log(data);
@@ -37,34 +31,51 @@ class FoodFinderHome extends React.Component {
         .catch(console.log);
         console.log("done?");
     };
+    
+    getVendorList (vendors) {
+    if (Object.keys(vendors).length === 0) {
+    	return <InputLabel>The item you have selected is out of stock at all of our vendors.</InputLabel>
+    }
+    return (
+    Object.keys(vendors).map((key, index) => (
+		<ListItem>
+		<ListItemIcon>
+		  <ShoppingCartIcon />
+		</ListItemIcon>
+		<ListItemText primary={key} secondary={"Price: $" + vendors[key].price + ", Quantity: " + vendors[key].quantity} />
+	      </ListItem>
+	      )));
+	 }
 
     render () {
         return (
-            <div
-            >
-                <Container style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center" }}>
-                    <InputLabel id="demo-simple-select-label">Available Products</InputLabel>
+            <Grid
+		  container
+		  direction="column"
+		  justify="center"
+		  alignItems="center"
+		>
+            <InputLabel id="demo-simple-select-label">Available Products</InputLabel>
+    
+            <Autocomplete
+                id="combo-box-demo"
+                options={productsList}
+                style={{ width: 300,
+                    justifyContent: "center",
+                    alignItems: "center" }}
+                onChange={(event, newValue) => {
+                    this.selectedProduct(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} variant="outlined" />}
+            />
+            <List>
+            {this.getVendorList(this.state.vendorMatches)}
             
-                    <Autocomplete
-                        id="combo-box-demo"
-                        options={productsList}
-                        style={{ width: 300,
-                            justifyContent: "center",
-                            alignItems: "center" }}
-                        onChange={(event, newValue) => {
-                            this.selectedProduct(newValue);
-                        }}
-                        renderInput={(params) => <TextField {...params} variant="outlined" />}
-                    />
-                    <InputLabel id="tester" >{this.state.currentProduct}</InputLabel>
-                    <InputLabel id="tester" >{this.state.vendorMatches["Vendor A"]}</InputLabel>
-                </Container>
 
-                
-            </div>
+            
+            </List>
+        
+        </Grid>
           );
     }
 

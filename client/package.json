@@ -5,23 +5,21 @@
   "main": "./client.js",
   "exports": "./client.js",
   "type": "module",
-  "proxy": "http://localhost:8081",
+  "proxy": "http://localhost:8080",
   "scripts": {
     "postinstall": "npm run build",
     "start": "serve -l 8080 -s build",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build"
   },
   "author": "Caroline Evans",
   "license": "TODO",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
+    "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.55",
     "cors": "^2.8.5",
     "esm": "^3.2.25",
     "express": "^4.16.4",
-    "node-fetch": "^2.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",

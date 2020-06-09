@@ -6,23 +6,11 @@ const path = require("path");
 let cors = require('cors');
 let finder = new FoodFinder();
 
-app.get('/', (req, res) => {
-  console.log('Home page');
-
-  res.send('Welcome! Please navigate to http://localhost:8081/find-product/flour');
-});
-
-app.get("/find-product/:product", (req, res, next) => {
-    console.log('app.get');
-    let dict = finder.findProduct(req.params.product);
-    res.send(dict);
-});
-
-module.exports = app;
 
 function init() {
     
-    app.use(cors());
+    app.use(cors({credentials: true, origin: "http://localhost:8080"}));
+    app.use(express.json());
     app.use(express.static(path.join(__dirname, '../client/build')));
     console.log(__dirname);
 
@@ -33,3 +21,19 @@ function init() {
 }
 
 init();
+
+app.get('/', (req, res) => {
+  console.log('Home page');
+
+  res.send('Welcome! Please navigate to http://localhost:8081/find-product/flour');
+});
+//app.use('/server');
+
+app.get("/find-product/:product", (req, res, next) => {
+    console.log('app.get');
+    let dict = finder.findProduct(req.params.product);
+    res.send(dict);
+});
+
+
+module.exports = app;

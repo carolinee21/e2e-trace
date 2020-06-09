@@ -2,10 +2,6 @@ service: default
 env: flex
 runtime: nodejs
 handlers:
-    - url: /(.*\..+)$
-      static_files: dist/\1
-      upload: dist/(.*\..+)$
-    - url: /.*
-      static_files: dist/index.html
-      upload: dist/index.html
+- url: /find-product/.*
+  script: auto
 
