@@ -11,6 +11,8 @@
     "author": "Caroline Evans",
     "license": "TODO",
     "dependencies": {
+        "@opencensus/exporter-stackdriver": "0.0.22",
+        "@opencensus/nodejs": "0.0.22",
         "body-parser": "^1.18.3",
         "cors": "^2.8.5",
         "esm": "^3.2.25",
