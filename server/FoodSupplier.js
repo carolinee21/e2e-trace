@@ -1,19 +1,23 @@
 import FoodVendor from "./FoodVendor";
 
 export default class FoodSupplier {
-    constructor () {
+    constructor (tracer) {
         this.vendors = [];
+        this.tracer = tracer;
         this.initializeRandomVendors();
 
         
         this.findVendorsWithProduct = async (productName) => {
             var stockedVendors = [];
+            const span = this.tracer.startChildSpan( { name: "finding-vendors" } );
+            span.start();
             for (var vendor of this.vendors) {
                 let inStock = await vendor.hasProduct(productName);
                 if (inStock) {
                     stockedVendors.push(vendor);
                 }
             }
+            span.end();
             return stockedVendors;
         }
     }
@@ -21,7 +25,7 @@ export default class FoodSupplier {
     initializeRandomVendors () {
         for (var charVal = 0; charVal < 10; charVal++) {
             let vendorName = "Vendor " + String.fromCharCode(65 + charVal);
-            let vendor = new FoodVendor(vendorName);
+            let vendor = new FoodVendor(vendorName, this.tracer);
             this.vendors.push(vendor);
         }
         console.log("Finished initializing vendors");

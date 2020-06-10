@@ -14,7 +14,7 @@ const tracer = tracing.tracer;
 
 
 let cors = require('cors');
-let finder = new FoodFinder();
+let finder = new FoodFinder(tracer);
 
 
 function init() {
@@ -39,7 +39,9 @@ app.get('/', (req, res) => {
 
 app.get("/find-product/:product", async (req, res, next) => {
     console.log('app.get');
-    tracer.startRootSpan({name: 'finding product...'}, async rootSpan => {
+    tracer.startRootSpan({name: 'product-search-request'}, async rootSpan => {
+        let delay = 100;
+        await new Promise(r => setTimeout(r, delay));
         let dict = await finder.findProduct(req.params.product);
         res.send(dict);
         rootSpan.end();

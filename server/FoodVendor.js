@@ -1,11 +1,11 @@
 import productsList from './AllProducts.js'
 
 export default class FoodVendor {
-    constructor(name) {
+    constructor(name, tracer) {
         this.name = name;
         this.products = {};
         this.initializeRandomProductSupply();
-    
+        this.tracer = tracer;
 
         this.hasProduct = async (productName) => {
             console.log("Checking " + this.name + " for product " + productName);
