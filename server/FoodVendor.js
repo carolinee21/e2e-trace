@@ -9,7 +9,7 @@ export default class FoodVendor {
 
         this.hasProduct = async (productName) => {
             console.log("Checking " + this.name + " for product " + productName);
-            let delay = 25;
+            let delay = 15;
             await new Promise(r => setTimeout(r, delay));
             console.log("...done!");
             return (productName in this.products);
@@ -18,7 +18,7 @@ export default class FoodVendor {
         this.getProductInfo = async (productName) => {
             console.log("Getting product info for " + this.name + " for product " + productName);
 
-            let delay = 100;
+            let delay = 50;
             await new Promise(r => setTimeout(r, delay));
             console.log("...done!");
 
