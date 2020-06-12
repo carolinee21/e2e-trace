@@ -2,7 +2,6 @@ import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Grid, InputLabel, TextField, List, ListItem, ListItemText, ListItemIcon, Typography, CircularProgress} from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import initTracer from './tracing';
 
 let productsList = ["Apples", "Bananas", "Butter", "Bread", "Carrots", "Cheese", "Eggs", "Flour", "Ground Beef", "Lettuce", "Milk", "Orange Juice", "Pasta", "Peanut Butter", "Rice", "Salt", "Sugar", "Spinach"];
 
@@ -13,29 +12,19 @@ class FoodFinderHome extends React.Component {
     constructor (props) {
         super(props);
         this.state = { currentProduct : "", vendorMatches : { }, isLoading: false };
-        this.tracer = initTracer();
     }
     selectedProduct (productName) {
         this.setState ({
             isLoading : true
         });
 
-        tracer.startRootSpan({name: 'client-dispatch'},  rootSpan => {
-
-            fetch(localUrl + 'find-product/' + productName)
-            .then(res => res.json())
-            .then((data) => {
-                console.log(data);
-            this.setState({ vendorMatches: data, currentProduct : productName, isLoading : false});
-            })
-            .catch(console.log);
-
-
-            rootSpan.end();
-        });
-
-
-        
+        fetch(localUrl + 'find-product/' + productName)
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data);
+        this.setState({ vendorMatches: data, currentProduct : productName, isLoading : false});
+        })
+        .catch(console.log);
     };
     
     getVendorList () {
@@ -72,7 +61,7 @@ class FoodFinderHome extends React.Component {
 		<Typography variant="h2" gutterBottom>
 		FoodFinder
 	      </Typography>
-            <InputLabel id="demo-simple-select-label">Available Products</InputLabel>
+            <InputLabel id="demo-simple-select-label">Available Products:</InputLabel>
     
             <Autocomplete
                 id="combo-box-demo"
