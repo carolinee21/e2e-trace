@@ -1,36 +1,26 @@
 import FoodFinder from './FoodFinder.js';
+import initTracer from './tracing.js';
+
 const express = require('express');
 const app = express();
 const path = require("path");
+const cors = require('cors');
 
-// OC Tracing
-const tracing = require('@opencensus/nodejs');
-const { StackdriverTraceExporter } = require('@opencensus/exporter-stackdriver');
-const exporter = new StackdriverTraceExporter({projectId: "ardent-fusion-279020"});
-
-tracing.registerExporter(exporter).start();
-
-const tracer = tracing.tracer;
+// app.use(cors({credentials: true, origin: "http://localhost:8080"}));
+app.use(cors({credentials: true, origin: "https://ardent-fusion-279020.wl.r.appspot.com"}));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '../client/build')));
+console.log(__dirname);
 
 
-let cors = require('cors');
+let tracer = initTracer();
 let finder = new FoodFinder(tracer);
 
+const port = process.env.PORT || 8082;
+app.listen(port, () => {
+    console.log('App listening on port', port);
+});
 
-function init() {
-    // app.use(cors({credentials: true, origin: "http://localhost:8080"}));
-    app.use(cors({credentials: true, origin: "https://ardent-fusion-279020.wl.r.appspot.com"}));
-    app.use(express.json());
-    app.use(express.static(path.join(__dirname, '../client/build')));
-    console.log(__dirname);
-
-    const port = process.env.PORT || 8082;
-    app.listen(port, () => {
-        console.log('App listening on port', port);
-    });
-}
-
-init();
 
 app.get('/', (req, res) => {
 
@@ -40,14 +30,12 @@ app.get('/', (req, res) => {
 app.get("/find-product/:product", async (req, res, next) => {
     console.log('app.get');
     tracer.startRootSpan({name: 'product-search-request'}, async rootSpan => {
-        let delay = 25;
+        let delay = 10;
         await new Promise(r => setTimeout(r, delay));
         let dict = await finder.findProduct(req.params.product);
         res.send(dict);
         rootSpan.end();
     });
-    
-    
 });
 
 
