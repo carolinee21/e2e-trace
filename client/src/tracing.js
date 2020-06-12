@@ -5,6 +5,7 @@ const propagation = require('@opencensus/propagation-b3');
 
 export default function initTracer () {
 
+  // maybe remove exporter??
     traceProvider.registerExporter(exporter).start({
         exporter,
         samplingRate: 1, // Always sample (for testing purposes)
