@@ -1,4 +1,4 @@
 env: flex
-runtime: nodejs
+runtime: nodejs10
 service: server
 instance_class: F2

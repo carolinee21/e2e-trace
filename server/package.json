@@ -1,23 +1,24 @@
 {
-    "name": "foodfinder-server",
-    "version": "1.0.0",
-    "description": "TODO. Example of end to end tracing using OpenTelemetry tracing",
-    "main": "./server.js",
-    "exports": "./server.js",
-    "type": "module",
-    "scripts": {
-        "start": "node init.js"
-    },
-    "author": "Caroline Evans",
-    "license": "TODO",
-    "dependencies": {
-        "@opencensus/exporter-stackdriver": "0.0.22",
-        "@opencensus/nodejs": "0.0.22",
-        "@opencensus/propagation-b3": "0.0.22",
-        "async": "^3.2.0",
-        "body-parser": "^1.18.3",
-        "cors": "^2.8.5",
-        "esm": "^3.2.25",
-        "express": "^4.16.4"
-    }
+  "name": "foodfinder-server",
+  "version": "1.0.0",
+  "description": "TODO. Example of end to end tracing using OpenTelemetry tracing",
+  "main": "./server.js",
+  "module": "./server.js",
+  "exports": "./server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node init.js"
+  },
+  "author": "Caroline Evans",
+  "license": "Unlicense",
+  "dependencies": {
+    "@opencensus/exporter-stackdriver": "0.0.22",
+    "@opencensus/nodejs": "0.0.22",
+    "@opencensus/propagation-b3": "0.0.22",
+    "async": "^3.2.0",
+    "cors": "^2.8.5",
+    "esm": "^3.2.25",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {}
 }
