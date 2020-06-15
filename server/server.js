@@ -28,11 +28,11 @@ app.get('/', (req, res) => {
 });
 
 app.get("/find-product/:product", async (req, res, next) => {
-    console.log('app.get');
-    tracer.startRootSpan({name: 'product-search-request'}, async rootSpan => {
+    const rootSpan = tracer.startSpan('product-search-request');
+    await tracer.withSpan(rootSpan, async () => {
         let delay = 10;
         await new Promise(r => setTimeout(r, delay));
-        let dict = await finder.findProduct(req.params.product);
+        let dict = await finder.findProduct(req.params.product, rootSpan);
         res.send(dict);
         rootSpan.end();
     });

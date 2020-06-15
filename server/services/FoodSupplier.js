@@ -7,17 +7,18 @@ export default class FoodSupplier {
         this.initializeRandomVendors();
 
         
-        this.findVendorsWithProduct = async (productName) => {
+        this.findVendorsWithProduct = async (productName, parentSpan) => {
             var stockedVendors = [];
-            const span = this.tracer.startChildSpan( { name: "finding-vendors" } );
-            span.start();
-            for (var vendor of this.vendors) {
-                let inStock = await vendor.hasProduct(productName);
-                if (inStock) {
-                    stockedVendors.push(vendor);
+            const span = this.tracer.startSpan("finding-vendors" , { parentSpan });
+            await tracer.withSpan(span, async () => {
+                for (var vendor of this.vendors) {
+                    let inStock = await vendor.hasProduct(productName);
+                    if (inStock) {
+                        stockedVendors.push(vendor);
+                    }
                 }
-            }
-            span.end();
+                span.end();
+            });
             return stockedVendors;
         }
     }
