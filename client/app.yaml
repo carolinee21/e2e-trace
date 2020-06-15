@@ -1,6 +1,6 @@
 service: default
 env: flex
-runtime: nodejs10
+runtime: nodejs
 handlers:
 - url: /find-product/.*
   script: auto

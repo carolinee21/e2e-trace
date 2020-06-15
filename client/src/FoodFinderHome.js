@@ -18,7 +18,7 @@ class FoodFinderHome extends React.Component {
             isLoading : true
         });
 
-        fetch(localUrl + 'find-product/' + productName)
+        fetch(cloudUrl + 'find-product/' + productName)
         .then(res => res.json())
         .then((data) => {
             console.log(data);
