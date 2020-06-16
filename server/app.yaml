@@ -1,4 +1,4 @@
 env: flex
-runtime: nodejs
+runtime: custom
 service: server
 instance_class: F2

@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: server-e2e
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: server-e2e
+          servicePort: 80
