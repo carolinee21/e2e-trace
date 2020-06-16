@@ -1,15 +1,15 @@
 import productsList from './AllProducts.js'
 
 export default class FoodVendor {
-    constructor(name) {
+    constructor(name, tracer) {
         this.name = name;
         this.products = {};
         this.initializeRandomProductSupply();
-    
+        this.tracer = tracer;
 
         this.hasProduct = async (productName) => {
             console.log("Checking " + this.name + " for product " + productName);
-            let delay = 25;
+            let delay = 5;
             await new Promise(r => setTimeout(r, delay));
             console.log("...done!");
             return (productName in this.products);
@@ -18,7 +18,7 @@ export default class FoodVendor {
         this.getProductInfo = async (productName) => {
             console.log("Getting product info for " + this.name + " for product " + productName);
 
-            let delay = 100;
+            let delay = 20;
             await new Promise(r => setTimeout(r, delay));
             console.log("...done!");
 
