@@ -28,5 +28,5 @@ module.exports = (serviceName) => {
   // Initialize the OpenTelemetry APIs to use the NodeTracerProvider bindings
   provider.register();
 
-  return opentelemetry.trace.getTracer('basic');
+  return opentelemetry.trace.getTracer();
 };
