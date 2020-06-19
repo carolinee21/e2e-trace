@@ -2,12 +2,11 @@ import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Grid, InputLabel, TextField, List, ListItem, ListItemText, ListItemIcon, Typography, CircularProgress} from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-// const tracer = require('./tracing')('trace-client');
-import tracer from './tracing';
 
 let productsList = ["Apples", "Bananas", "Butter", "Bread", "Carrots", "Cheese", "Eggs", "Flour", "Ground Beef", "Lettuce", "Milk", "Orange Juice", "Pasta", "Peanut Butter", "Rice", "Salt", "Sugar", "Spinach"];
 
 const cloudUrl = 'https://server-dot-ardent-fusion-279020.wl.r.appspot.com/';
+const cloudUrlGKE = 'http://35.192.210.240/';
 const localUrl = 'http://localhost:8082/'; 
 
 class FoodFinderHome extends React.Component {
@@ -19,12 +18,7 @@ class FoodFinderHome extends React.Component {
         this.setState ({
             isLoading : true
         });
-        const span = tracer.startSpan('client: find-product', {
-            parent: tracer.getCurrentSpan(),
-            // kind: api.SpanKind.CLIENT,
-          });
 
-        tracer.withSpan(span, async () => {
         fetch(cloudUrl + 'find-product/' + productName)
         .then(res => res.json())
         .then((data) => {
@@ -32,8 +26,6 @@ class FoodFinderHome extends React.Component {
         this.setState({ vendorMatches: data, currentProduct : productName, isLoading : false});
         })
         .catch(console.log);
-            span.end();
-        });
     };
     
     getVendorList () {
@@ -86,7 +78,6 @@ class FoodFinderHome extends React.Component {
             <List>
             {this.getVendorList()}
             </List>
-        
         </Grid>
           );
     }
